@@ -8,26 +8,26 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
   <style>
     :root{
-      --bg:#0f1724; --card:#0b1220; --muted:#94a3b8; --accent:#7c3aed; --glass: rgba(255,255,255,0.04);
+      --bg:#071029; --card:#071822; --muted:#9fb0c9; --accent:#6d28d9; --accent-2:#06b6d4; --glass: rgba(255,255,255,0.04);
       --radius:14px; --container:1100px; font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
     }
     *{box-sizing:border-box}
     html,body{height:100%}
-    body{margin:0;background:linear-gradient(180deg,var(--bg),#071028);color:#e6eef8;line-height:1.5}
-    .wrap{max-width:var(--container);margin:32px auto;padding:28px}
+    body{margin:0;background:linear-gradient(180deg,var(--bg),#031227);color:#e6eef8;line-height:1.5;-webkit-font-smoothing:antialiased}
+    .wrap{max-width:var(--container);margin:28px auto;padding:24px}
     header{display:flex;align-items:center;justify-content:space-between;gap:16px}
     .brand{display:flex;align-items:center;gap:12px}
-    .avatar{width:68px;height:68px;border-radius:12px;overflow:hidden;flex:0 0 68px;background:linear-gradient(135deg,#1f2937,#111827);display:grid;place-items:center;font-weight:800}
+    .avatar{width:64px;height:64px;border-radius:12px;overflow:hidden;flex:0 0 64px;background:linear-gradient(135deg,#0f1724,#0b1220);display:grid;place-items:center;font-weight:800}
     .brand h1{font-size:18px;margin:0}
     nav a{color:var(--muted);text-decoration:none;margin-left:18px;font-weight:600}
     nav a:hover{color:var(--accent)}
 
     .hero{display:grid;grid-template-columns:1fr 380px;gap:28px;align-items:center;margin-top:28px}
-    .hero .panel{background:var(--card);padding:28px;border-radius:var(--radius);backdrop-filter:blur(6px);box-shadow:0 6px 30px rgba(0,0,0,0.6)}
+    .panel{background:var(--card);padding:28px;border-radius:var(--radius);backdrop-filter:blur(6px);box-shadow:0 6px 30px rgba(2,6,23,0.6);transform:translateY(0);opacity:1;transition:all .6s ease}
     .intro h2{margin:0 0 8px;font-size:28px}
     .intro p{color:var(--muted);margin-top:0}
     .cta{margin-top:18px;display:flex;gap:12px}
-    .btn{background:linear-gradient(90deg,var(--accent),#4f46e5);border:none;padding:10px 16px;border-radius:10px;color:white;font-weight:700;cursor:pointer}
+    .btn{background:linear-gradient(90deg,var(--accent),#4f46e5);border:none;padding:10px 16px;border-radius:10px;color:white;font-weight:700;cursor:pointer;text-decoration:none}
     .btn.outline{background:transparent;border:1px solid rgba(255,255,255,0.06)}
 
     .card-profile{display:flex;flex-direction:column;gap:12px;align-items:center;text-align:center}
@@ -56,6 +56,20 @@
     /* floating action */
     .top-right{position:fixed;right:18px;bottom:18px}
     .floating{background:linear-gradient(90deg,#10b981,#06b6d4);padding:12px;border-radius:999px;color:#022;box-shadow:0 10px 30px rgba(2,6,23,0.6);font-weight:800}
+
+    /* modal */
+    .modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.6);display:none;align-items:center;justify-content:center}
+    .modal{background:var(--card);max-width:920px;width:94%;padding:18px;border-radius:12px}
+
+    /* reveal animation */
+    .reveal{opacity:0;transform:translateY(18px)}
+    .reveal.active{opacity:1;transform:none;transition:all .6s cubic-bezier(.2,.9,.3,1)}
+
+    /* prettier project image */
+    .project-img{width:100%;height:180px;object-fit:cover;border-radius:10px;margin-bottom:10px;background:#021029}
+
+    /* resume button */
+    .download{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:10px;background:linear-gradient(90deg,var(--accent),var(--accent-2));color:white;font-weight:700;text-decoration:none}
   </style>
 </head>
 <body>
@@ -65,7 +79,7 @@
         <div class="avatar">R</div>
         <div>
           <h1>Rithish</h1>
-          <div class="muted">Electronics Engineer · MIMO Antenna & IoT Projects</div>
+          <div class="muted">Electronics Engineer · MIMO Antennas · IoT</div>
         </div>
       </div>
       <nav>
@@ -73,13 +87,14 @@
         <a href="#projects">Projects</a>
         <a href="#skills">Skills</a>
         <a href="#contact">Contact</a>
+        <a href="/resume.pdf" class="download" download>Download CV</a>
       </nav>
     </header>
 
     <main class="hero">
-      <div class="panel intro">
+      <div class="panel intro reveal">
         <h2>Hi — I'm <strong>Rithish</strong></h2>
-        <p>Electronics engineer focused on antenna design, embedded systems and IoT. I design practical prototypes, measure RF performance, and build full-stack project demos.</p>
+        <p>Electronics engineer focused on antenna design, embedded systems and IoT. I design practical prototypes, measure RF performance, and build full-stack demos.</p>
         <div class="cta">
           <a class="btn" href="#projects">See projects</a>
           <a class="btn outline" href="#contact">Hire / Contact</a>
@@ -87,42 +102,47 @@
 
         <section id="about" style="margin-top:24px">
           <h3>About me</h3>
-          <p class="muted">I'm a student/engineer from Warangal building wireless systems (MIMO & antenna design), RFID medication-monitoring solutions and embedded prototypes. I enjoy end-to-end projects: schematic → PCB → firmware → demo.</p>
+          <p class="muted">Student/engineer from Warangal building wireless systems (MIMO & antenna design), RFID medication-monitoring solutions and embedded prototypes. From schematic → PCB → firmware → demo.</p>
         </section>
 
         <section id="projects">
           <h3 style="margin-top:18px">Featured projects</h3>
           <div class="grid" style="margin-top:12px">
-            <article class="project">
+
+            <article class="project reveal">
+              <img src="assets/mimo.jpg" alt="MIMO antenna" class="project-img">
               <h3>MIMO Antenna — Final Design</h3>
-              <p>Full design and measurements for a compact MIMO antenna array. Includes S-parameters, radiation patterns and prototype photos.</p>
-              <div style="margin-top:10px"><a class="pill" href="#">View details</a></div>
+              <p>Compact MIMO antenna array: S-parameters, radiation patterns, prototype photos and measurements.</p>
+              <div style="margin-top:10px"><a class="pill" href="#" data-modal="mimo">View details</a></div>
             </article>
 
-            <article class="project">
+            <article class="project reveal">
+              <img src="assets/rfid.jpg" alt="RFID medication" class="project-img">
               <h3>Medication Monitoring System (RFID)</h3>
-              <p>RFID-based medication reminder with logging and alerts. Microcontroller + RFID reader + mobile notifications demo.</p>
-              <div style="margin-top:10px"><a class="pill" href="#">View details</a></div>
+              <p>RFID-based reminder with logging & alerts. Microcontroller + RFID reader + mobile notifications demo.</p>
+              <div style="margin-top:10px"><a class="pill" href="#" data-modal="rfid">View details</a></div>
             </article>
 
-            <article class="project">
+            <article class="project reveal">
+              <img src="assets/iot.jpg" alt="IoT dashboard" class="project-img">
               <h3>Embedded IoT Dashboard</h3>
-              <p>Cloud-connected IoT dashboard for sensor telemetry and remote control with low-power MCU and OTA updates.</p>
-              <div style="margin-top:10px"><a class="pill" href="#">View details</a></div>
+              <p>Cloud-connected dashboard for sensor telemetry and remote control with low-power MCU and OTA updates.</p>
+              <div style="margin-top:10px"><a class="pill" href="#" data-modal="iot">View details</a></div>
             </article>
+
           </div>
         </section>
 
       </div>
 
-      <aside class="panel card-profile">
-        <div class="big-avatar">R</div>
+      <aside class="panel card-profile reveal">
+        <img src="assets/profile.jpg" alt="Rithish photo" class="big-avatar" style="width:160px;height:160px;object-fit:cover">
         <div style="font-weight:700;font-size:18px">Rithish</div>
         <div class="muted">Warangal, India</div>
         <div class="socials" style="margin-top:6px">
-          <a class="social" href="#">GitHub</a>
-          <a class="social" href="#">LinkedIn</a>
-          <a class="social" href="#">Mail</a>
+          <a class="social" href="https://github.com/PashikantiRithish" target="_blank" rel="noopener">GitHub</a>
+          <a class="social" href="#" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="social" href="mailto:your.email@example.com">Mail</a>
         </div>
 
         <div style="width:100%;margin-top:12px;text-align:left">
@@ -131,7 +151,7 @@
             <span class="skill">Antenna Design</span>
             <span class="skill">RF Measurements</span>
             <span class="skill">Embedded C</span>
-            <span class="skill">Arduino / ESP</span>
+            <span class="skill">ESP / Arduino</span>
             <span class="skill">PCB Design</span>
             <span class="skill">Python</span>
           </div>
@@ -139,14 +159,14 @@
 
         <div style="width:100%;margin-top:16px;text-align:left">
           <h4 style="margin:0 0 6px">Quick links</h4>
-          <a class="pill" href="#">Download CV</a>
+          <a class="pill" href="resume.pdf" download>Download CV</a>
         </div>
       </aside>
     </main>
 
     <section id="skills">
       <h3>Skills & Tools</h3>
-      <p class="muted">Tools I use regularly: ADS, CST/FEKO, KiCad, Proteus, MATLAB, LTspice, Git, VS Code.</p>
+      <p class="muted">Tools: ADS, CST/FEKO, KiCad, Proteus, MATLAB, LTspice, Git, VS Code.</p>
     </section>
 
     <section id="contact">
@@ -162,9 +182,17 @@
     </section>
 
     <footer>
-      <div>© <span id="year"></span> Rithish · Built with ❤️ · <a href="#" style="color:var(--muted)">Privacy</a></div>
+      <div>© <span id="year"></span> Rithish · Built with ❤️</div>
     </footer>
 
+  </div>
+
+  <!-- modals -->
+  <div id="modal-backdrop" class="modal-backdrop">
+    <div class="modal" role="dialog" aria-modal="true">
+      <button id="close-modal" style="float:right;background:transparent;border:none;color:var(--muted);font-weight:700;cursor:pointer">✕</button>
+      <div id="modal-content"></div>
+    </div>
   </div>
 
   <div class="top-right">
@@ -172,21 +200,60 @@
   </div>
 
   <script>
-    // small helpers
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // simple smooth scroll for internal anchors
-    (function(){
-      document.querySelectorAll('a[href^="#"]').forEach(a=>{
-        a.addEventListener('click',e=>{
-          const href=a.getAttribute('href');
-          if(href.length>1){
-            e.preventDefault();
-            document.querySelector(href).scrollIntoView({behavior:'smooth',block:'start'});
-          }
-        })
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click',e=>{
+        const href=a.getAttribute('href');
+        if(href.length>1 && href.startsWith('#')){
+          e.preventDefault();
+          document.querySelector(href).scrollIntoView({behavior:'smooth',block:'start'});
+        }
       })
-    })();
+    })
+
+    // Reveal on scroll
+    const reveals = document.querySelectorAll('.reveal');
+    const obs = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){entry.target.classList.add('active'); obs.unobserve(entry.target)}
+      })
+    }, {threshold:0.12});
+    reveals.forEach(r=>obs.observe(r));
+
+    // Modal logic (project details)
+    const modalBackdrop = document.getElementById('modal-backdrop');
+    const modalContent = document.getElementById('modal-content');
+    document.querySelectorAll('[data-modal]').forEach(btn=>{
+      btn.addEventListener('click',e=>{
+        e.preventDefault(); const id = btn.getAttribute('data-modal'); openModal(id)
+      })
+    });
+
+    function openModal(id){
+      let html = '';
+      if(id==='mimo'){
+        html = `<h2>MIMO Antenna — Final Design</h2>
+                <p class='muted'>Complete design files, S-parameters, measured radiation patterns and photos.</p>
+                <ul class='muted'>
+                  <li>Tools: CST/ADS, KiCad</li>
+                  <li>Deliverables: S11/S21 plots, pattern plots, prototype images</li>
+                </ul>
+                <p><a class='pill' href='assets/mimo-report.pdf' download>Download report (PDF)</a></p>`;
+      } else if(id==='rfid'){
+        html = `<h2>Medication Monitoring (RFID)</h2>
+                <p class='muted'>Embedded firmware + RFID prototype that sends reminders and logs events. Works with passive tags.</p>
+                <ul class='muted'><li>Hardware: MFRC522, PIC/AVR/ESP series</li><li>Features: logging, alerts, mobile demo</li></ul>`;
+      } else if(id==='iot'){
+        html = `<h2>IoT Dashboard</h2>
+                <p class='muted'>Cloud dashboard for telemetry and remote control. MQTT backend + lightweight web UI.</p>`;
+      }
+      modalContent.innerHTML = html; modalBackdrop.style.display='flex';
+    }
+    document.getElementById('close-modal').addEventListener('click',closeModal);
+    modalBackdrop.addEventListener('click',e=>{ if(e.target===modalBackdrop) closeModal() });
+    function closeModal(){ modalBackdrop.style.display='none'; modalContent.innerHTML=''; }
   </script>
 </body>
 </html>
